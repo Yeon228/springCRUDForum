@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h2>제목</h2>
+    <div th:text="${post.getTitle()}"> </div>
+
+    <h2>내용</h2>
+    <div th:text="${post.getBody()}"> </div>
+
+    <h2>작성일자</h2>
+    <div th:text="${post.getDate()}"> </div>
+</body>
+</html>
