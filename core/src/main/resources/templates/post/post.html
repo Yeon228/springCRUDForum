@@ -2,16 +2,38 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <link th:href="@{/css/bootstrap.min.css}"
+          href="../css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .container {
+            max-width: 1200px;
+        }
+    </style>
     <title>Title</title>
 </head>
 <body>
-    <h2>제목</h2>
-    <div th:text="${post.getTitle()}"> </div>
+    <div class="container">
+        <div class="py-5 text-center">
+            <div class="col">
+                <button class="w-100 btn btn-primary btn-lg"
+                        th:onclick="|location.href='/post/${post.postID}/edit'|"
+                        type="button">게시글 수정</button>
+            </div>
+            <div class="col">
+                <button class="w-100 btn btn-secondary btn-lg"
+                        th:onclick="|location.href='/post/${post.postID}/remove'|"
+                        type="button">게시글 삭제</button>
+            </div>
+        </div>
+        <div th:text="${post.getPostID()}" class="form-control">번호</div>
 
-    <h2>내용</h2>
-    <div th:text="${post.getBody()}"> </div>
+        <div  th:text="${post.getTitle()}" class="form-control">제목</div>
 
-    <h2>작성일자</h2>
-    <div th:text="${post.getDate()}"> </div>
+        <div th:text="${post.getBody()}" class="form-control">내용</div>
+
+        <div th:text="${post.getDate()}" class="form-control">작성일</div>
+    </div>
+    <hr class="my-4">
+
 </body>
 </html>

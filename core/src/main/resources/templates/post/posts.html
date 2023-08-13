@@ -2,9 +2,47 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link th:href="@{/css/bootstrap.min.css}"
+          href="../css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .container {
+            max-width: 1200px;
+        }
+    </style>
     <title>Title</title>
 </head>
 <body>
-posts HTML
+<hr class="my-4">
+<div>
+    <div class="container">
+        <div class="py-5 text-center">
+            <h2 th:text="목록 ">게시글 목록</h2>
+        </div>
+        <div class="col">
+            <button class="btn btn-primary float-end"
+                    onclick="location.href='addForm.html'"
+                    th:onclick="|location.href='@{/post/addPost}'|"
+                    type="button" th:text="게시글작성">게시글 작성</button>
+        </div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th th:text="PostID" width="10%">ID</th>
+            <th th:text="제목" width="25%">제목</th>
+            <th th:text="내용" width="45%">내용</th>
+            <th th:text="작성일" width="20%">작성일</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="post : ${posts}">
+            <td><a href="post.html" th:href="@{/post/{postID}(postID=${post.postID})}" th:text="${post.postID}">글번호</a></td>
+            <td><a href="post.html" th:href="@{/post/{postID}(postID=${post.postID})}" th:text="${post.title}">제목</a></td>
+            <td th:text="${post.body}">내용</td>
+            <td th:text="${post.date}">작성일</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</div>
 </body>
 </html>

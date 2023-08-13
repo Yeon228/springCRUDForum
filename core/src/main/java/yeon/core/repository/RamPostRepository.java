@@ -13,18 +13,18 @@ import java.util.Map;
 @Repository
 public class RamPostRepository {
     private final Map<Integer, Post> map = new HashMap<>();
-    public void createPost(Post post, int postID){
-        map.put(getCount() + 1, post);
+    private int postCount = 0;
+    public void createPost(Post post){
+        map.put(++postCount, post);
     }
 
     public Post getPost(int postNumber){
         return map.get(postNumber);
     }
 
-    public void editPost(int postNumber, String newTitle, String newBody){
-        Post post = map.get(postNumber);
-        post.setTitle(newTitle);
-        post.setBody(newBody);
+    public void editPost(int itemID, Post post){
+        map.remove(itemID);
+        map.put(itemID,post);
     }
 
     public void removePost(int postNumber){
@@ -35,6 +35,6 @@ public class RamPostRepository {
         return map.values();
     }
     public int getCount(){
-        return map.size();
+        return postCount;
     }
 }

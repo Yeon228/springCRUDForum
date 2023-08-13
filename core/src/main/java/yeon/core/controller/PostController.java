@@ -30,11 +30,26 @@ public class PostController {
     @GetMapping("/{postID}")
     public String readPost(@PathVariable Integer postID, Model model){
         Post post = repository.getPost(postID);
-        log.info("포스트 가져오기 성공");
-        log.info("postID = {}", postID);
-        log.info("post = {} ", post);
         model.addAttribute("post", post);
         return "post/post";
+    }
+
+    @GetMapping("/{postID}/remove")
+    public String removePost(@PathVariable Integer postID){
+        repository.removePost(postID);
+        return "redirect:/post";
+    }
+
+    @GetMapping("/{postID}/edit")
+    public String getEdit(@PathVariable Integer postID, Model model){
+        model.addAttribute(repository.getPost(postID));
+        return "post/editPost";
+    }
+
+    @PostMapping("/{postID}/edit")
+    public String editPost(@PathVariable Integer postID, @ModelAttribute Post post){
+        repository.editPost(postID, post);
+        return "redirect:/post/{postID}";
     }
 
     @GetMapping("/addPost")
@@ -50,7 +65,7 @@ public class PostController {
 
         int postID = repository.getCount() + 1;
         Post post = new Post(title, body, postID, LocalDateTime.now());
-        repository.createPost(post, postID);
+        repository.createPost(post);
         log.info("post ={}",post);
 
         redirectAttributes.addAttribute("postID", post.getPostID());
