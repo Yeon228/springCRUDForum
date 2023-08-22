@@ -8,17 +8,33 @@
     .container {
       max-width: 1200px;
     }
+    .field-error{
+      border-color: #dc3545;
+      color: #dc3545;
+    }
   </style>
   <title>Create Post</title>
 </head>
 <body class="container">
 <h2>게시글 작성</h2>
-<form th:action="@{/post/addPost}" method="post">
-  <label for="title">제목:</label>
-  <input type="text" id="title" name="title" required><br><br>
+<form action="post.html" th:action th:object="${post}" method="post">
+  <div>
+    <label for="title">제목</label>
+    <input type="text" id="title" th:field="*{title}"
+           th:errorclass="field-error"  class="form-control" placeholder="내용을 입력하세요">
+    <div class="field-error" th:errors="*{title}">
+      제목 오류
+    </div>
+  </div>
 
-  <label for="body">내용:</label>
-  <input type="text" id="body" name="body" required><br><br>
+  <div>
+    <label for="body">내용</label>
+    <input type="text" id="body" th:field="*{body}"
+           th:errorclass="field-error"  class="form-control" placeholder="내용을 입력하세요">
+    <div class="field-error" th:errors="*{body}">
+      내용 오류
+    </div>
+  </div>
 
   <button type="submit">Create Post</button>
 </form>

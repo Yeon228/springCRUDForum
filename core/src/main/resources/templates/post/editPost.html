@@ -19,11 +19,17 @@
     </div>
     <div>
         <label for="itemName" th:text="제목">상품명</label><br>
-        <input type="text" id="itemName" th:field="*{title}" class="form-control">
+        <input type="text" id="itemName" th:field="*{title}" th:errorclass="field-error" class="form-control">
+        <div class="field-error" th:errors="*{title}">
+            제목 오류
+        </div>
     </div>
     <div>
         <label for="price" th:text="내용">내용</label><br>
-        <input type="text" id="price" th:field="*{body}" class="form-control">
+        <input type="text" id="price" th:field="*{body}" th:errorclass="field-error" class="form-control">
+        <div class="field-error" th:errors="*{body}">
+            내용 오류
+        </div>
     </div>
     <div>
         <label for="quantity" th:text="작성일">작성일</label><br>

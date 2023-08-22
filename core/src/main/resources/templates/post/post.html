@@ -17,21 +17,36 @@
             <div class="col">
                 <button class="w-100 btn btn-primary btn-lg"
                         th:onclick="|location.href='/post/${post.postID}/edit'|"
-                        type="button">게시글 수정</button>
+                        type="button" th:text="#{edit.post}"></button>
             </div>
             <div class="col">
                 <button class="w-100 btn btn-secondary btn-lg"
                         th:onclick="|location.href='/post/${post.postID}/remove'|"
-                        type="button">게시글 삭제</button>
+                        type="button" th:text="#{remove.post}"></button>
             </div>
         </div>
-        <div th:text="${post.getPostID()}" class="form-control">번호</div>
+        <div>
+            <label for="postID">글 번호</label>
+            <input type="text" id="postID" name="postID" th:value="${post.postID}"
+                   class="form-control" readonly>
+        </div>
+        <div>
+            <label for="title">제목</label>
+            <input type="text" id="title" name="title" th:value="${post.title}"
+                   class="form-control" readonly>
+        </div>
 
-        <div  th:text="${post.getTitle()}" class="form-control">제목</div>
+        <div>
+            <label for="body">내용</label>
+            <input type="text" id="body" name="body" th:value="${post.body}"
+                   class="form-control" readonly>
+        </div>
+        <div>
+            <label for="date">작성일</label>
+            <input type="text" id="date" name="date" th:value="${post.date}"
+                   class="form-control" readonly>
+        </div>
 
-        <div th:text="${post.getBody()}" class="form-control">내용</div>
-
-        <div th:text="${post.getDate()}" class="form-control">작성일</div>
     </div>
     <hr class="my-4">
 

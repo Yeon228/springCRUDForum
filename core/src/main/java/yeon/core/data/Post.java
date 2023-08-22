@@ -13,6 +13,10 @@ public class Post {
         this.date = date;
     }
 
+    public Post(){
+
+    }
+
     private String title;
     private String body;
     private Integer postID;
